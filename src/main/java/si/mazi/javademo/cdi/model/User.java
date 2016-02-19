@@ -2,14 +2,17 @@ package si.mazi.javademo.cdi.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User implements Serializable {
 
     @Id
@@ -22,13 +25,20 @@ public class User implements Serializable {
     @NotNull @Size(min = 1, max = 256)
     private String name;
 
-    @ManyToOne
-    private Company employer;
+    @Transient
+    protected Type type;
 
-    protected User() { }
+    protected User() {
+        type = Type.User;
+    }
 
     public User(String username) {
+        this(username, Type.User);
+    }
+
+    public User(String username, Type type) {
         this.username = username;
+        this.type = type;
     }
 
     public String getPassword() {
@@ -51,16 +61,14 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public Company getEmployer() {
-        return employer;
-    }
-
-    public void setEmployer(Company employer) {
-        this.employer = employer;
+    public Type getType() {
+        return type;
     }
 
     @Override
     public String toString() {
         return String.format("User{%s}", username);
     }
+
+    public enum Type { User, Employee }
 }

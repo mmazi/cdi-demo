@@ -1,0 +1,19 @@
+<ui:composition template="/template.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="content">
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Username:"/>
+                <h:outputText value="#{userEditor.user.username}"/>
+                <h:outputLabel value="Name:"/>
+                <h:inputText value="#{userEditor.user.name}"/>
+                <h:outputLabel value="Password:"/>
+                <h:inputSecret value="#{userEditor.user.password}"/>
+            </h:panelGrid>
+
+            <h:commandButton value="Cancel" action="#{userEditor.cancel}" immediate="true"/>
+            <h:commandButton value="&lt;&lt; Back" disabled="true"/>
+            <h:commandButton value="Continue >>" action="#{userEditor.saveName}"/>
+            <h:commandButton value="Save" action="#{userEditor.save}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

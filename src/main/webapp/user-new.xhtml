@@ -1,0 +1,20 @@
+<ui:composition name="content" template="/template.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Type:"/>
+                <h:selectOneRadio layout="lineDirection" value="#{userEditor.type}">
+                    <f:selectItems value="#{userEditor.allTypes}" var="t" itemLabel="#{t}"/>
+                </h:selectOneRadio>
+                <h:outputLabel value="Username:"/>
+                <h:inputText value="#{userEditor.username}" disabled="#{!userEditor.isNew}"/>
+            </h:panelGrid>
+
+            <h:commandButton value="Cancel" action="#{userEditor.cancel}" immediate="true"/>
+            <h:commandButton value="&lt;&lt; Back" disabled="true"/>
+            <h:commandButton value="Continue >>" action="#{userEditor.createNew}"/>
+            <h:commandButton value="Save" disabled="true"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

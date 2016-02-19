@@ -1,0 +1,18 @@
+<ui:composition name="content" template="/template.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Employer:"/>
+                <h:selectOneMenu value="#{userEditor.user.employer}" converter="#{companyConverter}">
+                    <f:selectItems value="#{allCompanies}" var="c" itemLabel="#{c.name}"/>
+                </h:selectOneMenu>
+            </h:panelGrid>
+
+            <h:commandButton value="Cancel" action="#{userEditor.cancel}" immediate="true"/>
+            <h:commandButton value="&lt;&lt; Back" action="user-edit" immediate="true"/>
+            <h:commandButton value="Continue >>" action="user-review"/>
+            <h:commandButton value="Save" action="#{userEditor.save}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

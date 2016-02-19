@@ -4,6 +4,33 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
 >
+
+<h:form>
+    <h:dataTable value="#{allUsers}" var="u" styleClass="table table-hover">
+        <h:column>
+            <f:facet name="header">Username</f:facet>
+            <h:outputText value="#{u.username}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            <h:outputText value="#{u.name}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">Type</f:facet>
+            <h:outputText value="#{u.type}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">Employer</f:facet>
+            <h:outputText value="#{u.employer.name}" rendered="#{u.type eq 'Employee'}"/>
+        </h:column>
+        <h:column>
+            <h:commandButton value="Edit" action="#{userEditor.editUser(u)}"/>
+        </h:column>
+    </h:dataTable>
+    <h:commandButton value="Add" action="#{userEditor.editNew}"/>
+</h:form>
 
 </html>

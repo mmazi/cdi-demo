@@ -1,0 +1,21 @@
+<ui:composition name="content" template="/template.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="content">
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Username:"/>
+                <h:outputText value="#{userEditor.user.username}"/>
+                <h:outputLabel value="Name:"/>
+                <h:outputText value="#{userEditor.user.name}"/>
+                <h:outputLabel value="Type:"/>
+                <h:outputText value="#{userEditor.user.type}"/>
+                <h:outputLabel value="Employer:" rendered="#{userEditor.user.type eq 'Employee'}"/>
+                <h:outputText value="#{userEditor.user.employer.name}" rendered="#{userEditor.user.type eq 'Employee'}"/>
+            </h:panelGrid>
+
+            <h:commandButton value="Cancel" action="#{userEditor.cancel}" immediate="true"/>
+            <h:commandButton value="&lt;&lt; Back" action="user-edit"/>
+            <h:commandButton value="Continue >>" disabled="true"/>
+            <h:commandButton value="Save" action="#{userEditor.save}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
