@@ -6,6 +6,8 @@ import si.mazi.javademo.cdi.model.User;
 import javax.ejb.Stateful;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -67,6 +69,7 @@ public class UserEditor implements Serializable {
     }
 
     public String cancel() {
+        user = null;
         conversation.end();
         return "index";
     }
@@ -97,6 +100,7 @@ public class UserEditor implements Serializable {
         return Arrays.asList(User.Type.values());
     }
 
+    @Produces @Dependent @Edited
     public User getUser() {
         return user;
     }

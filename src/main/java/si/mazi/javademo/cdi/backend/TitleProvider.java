@@ -13,7 +13,8 @@ import javax.inject.Named;
 @RequestScoped
 public class TitleProvider {
 
-    @Inject @LoggedIn Instance<User> userInstance;
+    @Inject @LoggedIn Instance<User> loggedInUserInstance;
+    @Inject @Edited Instance<User> editedUserInstance;
 
     private String requestTitle;
 
@@ -22,7 +23,11 @@ public class TitleProvider {
         if (requestTitle != null) {
             return requestTitle;
         }
-        final User loggedInUser = userInstance.get();
+        final User editedUser = editedUserInstance.get();
+        if (editedUser != null) {
+            return "CDI / Editing " + editedUser.getName();
+        }
+        final User loggedInUser = loggedInUserInstance.get();
         if (loggedInUser != null) {
             return "CDI / " + loggedInUser.getName();
         }
