@@ -1,0 +1,12 @@
+<ui:composition template="/template.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="content">
+        <ui:fragment rendered="#{!authenticator.loggedIn}">
+            <ui:include src="login.xhtml"/>
+        </ui:fragment>
+        <ui:fragment rendered="#{authenticator.loggedIn}">
+            <ui:include src="main.xhtml"/>
+        </ui:fragment>
+    </ui:define>
+
+</ui:composition>

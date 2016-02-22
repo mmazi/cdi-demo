@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
+<nav>
+    <h:form>
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation"><h:commandLink value="Hi #{loggedInUser.name}!" rendered="#{authenticator.loggedIn}"/></li>
+            <li role="presentation" class="active"><h:outputLink value="index.xhtml">Home</h:outputLink></li>
+            <li role="presentation"><h:commandLink value="Log out" action="#{authenticator.logout}"/></li>
+        </ul>
+    </h:form>
+</nav>
+
+</html>
